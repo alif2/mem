@@ -15,11 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="BACKING_STORE.bin">
-      <Filter>Resource Files</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <Text Include="addresses.txt">
       <Filter>Resource Files</Filter>
     </Text>
@@ -29,7 +24,10 @@
     <Text Include="addresses2.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="correct1_rr.txt">
+    <Text Include="correct.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="correct_ex.txt">
       <Filter>Resource Files</Filter>
     </Text>
     <Text Include="correct2_fifo.txt">
@@ -44,15 +42,14 @@
     <Text Include="test2_lru.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="correct.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="correct_ex.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="part1.cpp">
+    <None Include="BACKING_STORE.bin">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="part2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
