@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{3192F1B0-137F-47CD-88EF-ECB5508CD917}</ProjectGuid>
     <RootNamespace>mem</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -69,7 +69,9 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(WindowsSdkDir)\lib</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -111,6 +113,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="..\..\..\..\Downloads\part1.out" />
+    <None Include="..\..\..\..\Downloads\part2.out" />
+    <None Include="BACKING_STORE.bin" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="addresses.txt" />
+    <Text Include="addresses1.txt" />
+    <Text Include="addresses2.txt" />
+    <Text Include="correct.txt" />
+    <Text Include="correct1_rr.txt" />
+    <Text Include="correct2_fifo.txt" />
+    <Text Include="correct2_lru.txt" />
+    <Text Include="correct_ex.txt" />
+    <Text Include="test2_fifo.txt" />
+    <Text Include="test2_lru.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="part1.cpp" />
+    <ClCompile Include="part2.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

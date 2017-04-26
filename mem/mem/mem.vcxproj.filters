@@ -14,4 +14,55 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\Downloads\part1.out">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\Downloads\part2.out">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="BACKING_STORE.bin">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="addresses.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="addresses1.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="addresses2.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="correct1_rr.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="correct2_fifo.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="correct2_lru.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="test2_fifo.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="test2_lru.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="correct.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="correct_ex.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="part1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="part2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
 </Project>
