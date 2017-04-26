@@ -115,6 +115,8 @@
     <Text Include="addresses1.txt" />
     <Text Include="addresses2.txt" />
     <Text Include="correct.txt" />
+    <Text Include="correct1_fifo.txt" />
+    <Text Include="correct1_lru.txt" />
     <Text Include="correct2_fifo.txt" />
     <Text Include="correct2_lru.txt" />
     <Text Include="correct_ex.txt" />

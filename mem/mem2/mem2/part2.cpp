@@ -4,6 +4,7 @@
 #include <string>
 #include <bitset>
 #include <algorithm>
+#include <iomanip>
 
 const long PAGE_SIZE = 256;
 const long PAGE_COUNT = 128;
@@ -158,11 +159,6 @@ int main(int argc, char **argv) {
 	for (unsigned int i = 0; i < addresses.size(); i++) {
 		int physadd = 0, val = 0, hit;
 
-		if(i == 604)
-		{
-			int aaa = 0;
-		}
-
 		// TLB check
 		int tlbhit = tlb_hit(tlb, addresses.at(i).page);
 		if (tlbhit >= 0) {
@@ -177,6 +173,27 @@ int main(int argc, char **argv) {
 			physadd = hit * PAGE_SIZE + addresses.at(i).offset;
 			val = pages[hit].data[addresses.at(i).offset];
 			pages[hit].used = i;
+
+			// TLB scheduling
+			bool found = false;
+			tlb_page newtlb;
+			newtlb.index = hit;
+			newtlb.pagenum = pages[hit].pagenum;
+			newtlb.modified = true;
+			newtlb.used = i;
+
+			for (unsigned int k = 0; k < TLB_SIZE; k++) {
+				if (!tlb[k].modified) {
+					tlb[k] = newtlb;
+					found = true;
+					break;
+				}
+			}
+
+			// If the TLB is already full, replace existing
+			if (!found) {
+				tlb[get_victim_tlb(tlb)] = newtlb;
+			}
 		}
 
 		// Page fault
@@ -186,6 +203,7 @@ int main(int argc, char **argv) {
 			memory.read(newpage.data, PAGE_SIZE);
 
 			newpage.pagenum = addresses.at(i).page;
+			newpage.modified = true;
 			newpage.created = i;
 			newpage.used = i;
 
@@ -194,19 +212,20 @@ int main(int argc, char **argv) {
 				for (unsigned int j = 0; j < PAGE_COUNT; j++) {
 					if (!pages[j].modified) {
 						pages[j] = newpage;
-						pages[j].modified = true;
 						physadd = j * PAGE_SIZE + addresses.at(i).offset;
 						val = newpage.data[addresses.at(i).offset];
 
 						// TLB scheduling
 						bool found = false;
+						tlb_page newtlb;
+						newtlb.index = j;
+						newtlb.pagenum = newpage.pagenum;
+						newtlb.modified = true;
+						newtlb.used = i;
+
 						for (unsigned int k = 0; k < TLB_SIZE; k++) {
 							if (!tlb[k].modified) {
-								tlb[k].index = j;
-								tlb[k].pagenum = newpage.pagenum;
-								tlb[k].modified = true;
-								tlb[k].used = i;
-
+								tlb[k] = newtlb;
 								found = true;
 								break;
 							}
@@ -214,17 +233,12 @@ int main(int argc, char **argv) {
 						
 						// If the TLB is already full, replace existing
 						if(!found) {
-							int replace = get_victim_tlb(tlb);
-							tlb[replace].index = j;
-							tlb[replace].pagenum = newpage.pagenum;
-							tlb[replace].modified = true;
-							tlb[replace].used = i;
+							tlb[get_victim_tlb(tlb)] = newtlb;
 						}
 
 						break;
 					}
 				}
-				faults++;
 			}
 
 			// After page table is full, need replacement strategy
@@ -235,7 +249,29 @@ int main(int argc, char **argv) {
 				pages[replace].modified = true;
 				physadd = replace * PAGE_SIZE + addresses.at(i).offset;
 				val = newpage.data[addresses.at(i).offset];
+
+				// TLB scheduling
+				bool found = false;
+				tlb_page newtlb;
+				newtlb.index = replace;
+				newtlb.pagenum = newpage.pagenum;
+				newtlb.modified = true;
+				newtlb.used = i;
+
+				for (unsigned int k = 0; k < TLB_SIZE; k++) {
+					if (!tlb[k].modified) {
+						tlb[k] = newtlb;
+						found = true;
+						break;
+					}
+				}
+
+				// If the TLB is already full, replace existing
+				if (!found) {
+					tlb[get_victim_tlb(tlb)] = newtlb;
+				}
 			}
+			faults++;
 		}
 		correct << "Virtual address: " << addresses.at(i).virt << " Physical address: " << physadd << " Value: " << val << "\n";
 	}
@@ -244,10 +280,9 @@ int main(int argc, char **argv) {
 
 	correct << "Number of Translated Addresses = " << addresses.size() << "\n";
 	correct << "Page Faults = " << faults << "\n";
-	correct << "Page Fault Rate = " << double(faults) / addresses.size() << "\n";
+	correct << "Page Fault Rate = " << setprecision(3) << fixed << double(faults) / addresses.size() << "\n";
 	correct << "TLB Hits = " << tlbhits << "\n";
-	correct << "TLB Hit Rate = " << double(tlbhits) / addresses.size() << "\n";
-	correct << "\n";
+	correct << "TLB Hit Rate = " << setprecision(3) << fixed << double(tlbhits) / addresses.size() << "\n";
 
 	correct.close();
 }

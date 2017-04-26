@@ -42,6 +42,12 @@
     <Text Include="test2_lru.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="correct1_fifo.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="correct1_lru.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <None Include="BACKING_STORE.bin">

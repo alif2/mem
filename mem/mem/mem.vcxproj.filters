@@ -29,9 +29,6 @@
     <Text Include="addresses2.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="correct1_rr.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
     <Text Include="correct2_fifo.txt">
       <Filter>Resource Files</Filter>
     </Text>
@@ -48,6 +45,12 @@
       <Filter>Resource Files</Filter>
     </Text>
     <Text Include="correct_ex.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="correct1_fifo.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="correct1_lru.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>
