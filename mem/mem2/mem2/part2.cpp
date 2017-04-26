@@ -158,18 +158,23 @@ int main(int argc, char **argv) {
 	for (unsigned int i = 0; i < addresses.size(); i++) {
 		int physadd = 0, val = 0, hit;
 
+		if(i == 604)
+		{
+			int aaa = 0;
+		}
+
 		// TLB check
 		int tlbhit = tlb_hit(tlb, addresses.at(i).page);
 		if (tlbhit >= 0) {
 			physadd = tlb[tlbhit].index * PAGE_SIZE + addresses.at(i).offset;
-			val = pages[tlbhit].data[addresses.at(i).offset];
-			pages[tlbhit].used = i;
+			val = pages[tlb[tlbhit].index].data[addresses.at(i).offset];
+			pages[tlb[tlbhit].index].used = i;
 			tlbhits++;
 		}
 
 		// TLB miss, Page table check
 		else if ((hit = page_hit(pages, addresses.at(i).page)) >= 0) {
-			physadd = pages[hit].pagenum * PAGE_SIZE + addresses.at(i).offset;
+			physadd = hit * PAGE_SIZE + addresses.at(i).offset;
 			val = pages[hit].data[addresses.at(i).offset];
 			pages[hit].used = i;
 		}
