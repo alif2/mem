@@ -993,8 +993,14 @@ Virtual address: 6957 Physical address: 26413 Value: 0
 Virtual address: 2301 Physical address: 35325 Value: 0
 Virtual address: 7736 Physical address: 57912 Value: 0
 Virtual address: 31260 Physical address: 23324 Value: 0
-Virtual address: 17071 Physical address: 62639 Value: -85
+Virtual address: 17071 Physical address: 175 Value: -85
 Virtual address: 8940 Physical address: 46572 Value: 0
 Virtual address: 9929 Physical address: 44745 Value: 0
 Virtual address: 45563 Physical address: 46075 Value: 126
 Virtual address: 12107 Physical address: 2635 Value: -46
+Number of Translated Addresses = 1000
+Page Faults = 244
+Page Fault Rate = 0.244
+TLB Hits = 62
+TLB Hit Rate = 0.062
+
