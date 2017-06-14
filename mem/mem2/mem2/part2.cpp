@@ -1,10 +1,10 @@
+#include <algorithm>
+#include <bitset>
 #include <fstream>
-#include <vector>
+#include <iomanip>
 #include <iostream>
 #include <string>
-#include <bitset>
-#include <algorithm>
-#include <iomanip>
+#include <vector>
 
 const long PAGE_SIZE = 256;
 const long PAGE_COUNT = 128;

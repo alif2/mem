@@ -1,10 +1,10 @@
+#include <algorithm>
+#include <bitset>
 #include <fstream>
-#include <vector>
+#include <iomanip>
 #include <iostream>
 #include <string>
-#include <bitset>
-#include <algorithm>
-#include <iomanip>
+#include <vector>
 
 const long PAGE_SIZE = 256;
 const long PAGE_COUNT = 256;
@@ -199,7 +199,7 @@ int main(int argc, char **argv) {
 	correct << "Page Faults = " << faults << "\n";
 	correct << "Page Fault Rate = " << setprecision(3) << fixed << double(faults) / addresses.size() << "\n";
 	correct << "TLB Hits = " << tlbhits << "\n";
-	correct << "TLB Hit Rate = " << setprecision(3) << fixed << double(tlbhits) / addresses.size();
+	correct << "TLB Hit Rate = " << setprecision(3) << fixed << double(tlbhits) / addresses.size() << "\n";
 	
 	correct.close();
 }
